@@ -16,6 +16,12 @@ import org.springframework.web.bind.support.SessionStatus;
 @SessionAttributes("tacoOrder")
 public class OrderController {
 
+    private OrderRepository orderRepository;
+
+    public OrderController(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+
     @GetMapping("/current")
     public String orderForm() {
         return "orderForm";
@@ -27,7 +33,7 @@ public class OrderController {
             return "orderForm";
         }
 
-        log.info("Order submitted: {}", tacoOrder);
+        orderRepository.save(tacoOrder);
         sessionStatus.setComplete();
 
         return "redirect:/";

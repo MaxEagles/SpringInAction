@@ -33,6 +33,3 @@ create table if not exists Ingredient (
 
 alter table Taco
     add foreign key (taco_order) references Taco_Order(id);
-
-alter table Ingredient_Ref
-    add foreign key (ingredient) references Ingredient(id);
