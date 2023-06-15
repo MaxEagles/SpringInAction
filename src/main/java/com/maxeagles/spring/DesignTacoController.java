@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +25,7 @@ public class DesignTacoController {
 
     @ModelAttribute
     public void addIngredientsToModel (Model model) {
-        List<Ingredient> ingredients = ingredientRepository.findAll();
+        List<Ingredient> ingredients = (List<Ingredient>)ingredientRepository.findAll();
         Ingredient.Type[] types = Ingredient.Type.values();
         for(Ingredient.Type type: types) {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
