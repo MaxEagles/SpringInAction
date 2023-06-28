@@ -26,6 +26,7 @@ public class DesignTacoController {
     @ModelAttribute
     public void addIngredientsToModel (Model model) {
         List<Ingredient> ingredients = (List<Ingredient>)ingredientRepository.findAll();
+        Ingredient i = ingredientRepository.findById("FLTO").orElse(null);
         Ingredient.Type[] types = Ingredient.Type.values();
         for(Ingredient.Type type: types) {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
