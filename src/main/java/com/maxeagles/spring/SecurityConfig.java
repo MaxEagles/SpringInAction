@@ -32,6 +32,9 @@ public class SecurityConfig {
                 .requestMatchers("/design", "/orders").hasRole("USER")
                 .requestMatchers("/", "/**").permitAll()
                 .and()
+                .formLogin(
+                        form -> form.loginPage("/login")
+                                .defaultSuccessUrl("/design"))
                 .build();
     }
 }
